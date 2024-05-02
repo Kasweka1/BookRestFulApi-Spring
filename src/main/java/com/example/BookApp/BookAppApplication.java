@@ -14,7 +14,6 @@ public class BookAppApplication {
 		SpringApplication.run(BookAppApplication.class, args);
 	}
 
-
 	@GetMapping("/hello/")
 	public String helloWorld() {
 		return "Hello, World!";

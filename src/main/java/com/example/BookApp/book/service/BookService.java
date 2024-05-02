@@ -10,11 +10,9 @@ import com.example.BookApp.book.repository.BookRepository;
 public class BookService {
     
     @Autowired
-    private final BookRepository bookRepository;
+    private  BookRepository bookRepository;
 
-    public BookService(BookRepository bookRepository){
-        this.bookRepository = bookRepository;
-    }
+
 
     public Book saveBook(Book book) {
         return bookRepository.save(book);
