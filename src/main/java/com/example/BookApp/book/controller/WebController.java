@@ -17,6 +17,8 @@ import com.example.BookApp.book.service.BookService;
 @Controller
 @RequestMapping("/books")
 public class WebController {
+    
+
     private final BookService bookService;
 
     @Autowired
@@ -28,7 +30,7 @@ public class WebController {
     public String getAllBooks(Model model){
         List<Book> books = bookService.getAllBooks();
         model.addAttribute("books", books);
-        return "index";
+        return "shelf";
     }
 
     @GetMapping("/{id}")
