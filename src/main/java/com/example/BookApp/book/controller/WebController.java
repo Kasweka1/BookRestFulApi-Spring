@@ -74,9 +74,23 @@ public class WebController {
         return "redirect:/books";
     }
 
-    @GetMapping("/delete/{id}")
+    @PostMapping("/delete/{id}")
     public String deleteBook(@PathVariable("id") Long id) {
         bookService.deleteBook(id);
         return "redirect:/books";
     }
+
+
+    @GetMapping("/delete/{id}")
+    public String showDeleteConfirmation(@PathVariable("id") Long id, Model model) {
+        Optional<Book> book = bookService.getBookById(id);
+        if (book.isPresent()) {
+            model.addAttribute("book", book.get());
+            return "delete-book";
+        } else {
+            return "not-found";
+        }
+    }
+
+    
 }
