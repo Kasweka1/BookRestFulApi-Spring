@@ -13,12 +13,12 @@ This is a simple Book Management System built using Spring Boot.
 
 - Spring Boot
 - Thymeleaf
-- MySQL
+- MariaDB
 
 ## Prerequisites
 
 - Java 11 or later
-- MySQL installed and running locally
+- MariaDB installed and running locally
 - Gradle
 
 ## Getting Started
@@ -31,9 +31,9 @@ git clone https://github.com/Kasweka1/BookAppInterviewQuestionSpringBoot.git
 
 cd BookApp
 
-3. Open `src/main/resources/application.properties` and configure your MySQL username and password:
+3. Open `src/main/resources/application.properties` and configure your MariaDB username and password:
 
-spring.datasource.url=jdbc:mysql://localhost:3306/book_db?useSSL=false
+spring.datasource.url=jdbc:mariaDB://localhost:3306/book_db?useSSL=false
 spring.datasource.username=your-username
 spring.datasource.password=your-password
 
