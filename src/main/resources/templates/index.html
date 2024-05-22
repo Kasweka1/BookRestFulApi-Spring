@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Management Restful API</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <style>
+        .navbar-nav {
+            margin-left: auto;
+        }
+        .header {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+        }
+        .header h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .header p {
+            font-size: 20px;
+            margin-bottom: 40px;
+        }
+        .products, .about-us, .testimonials {
+            padding: 60px 0;
+        }
+        .products .card, .testimonials .card {
+            border: none;
+            margin-bottom: 30px;
+        }
+        .testimonials .card-body {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header text-center">
+        <div class="container">
+            <h1>Welcome to Book Management Restful API</h1>
+            <p>Your ultimate solution for managing book inventories seamlessly.</p>
+            <a href="#products" class="btn btn-primary">Explore Products</a>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">BookManagementAPI</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about-us">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Dashboard</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Us Section -->
+    <section id="about-us" class="about-us text-center">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>We are a team of passionate developers dedicated to creating efficient and user-friendly book management solutions. Our API allows seamless integration and management of book inventories for libraries, bookstores, and personal collections.</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products text-center">
+        <div class="container">
+            <h2>Our Products</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Dashboard</h5>
+                            <p class="card-text">Our intuitive dashboard allows you to manage your book inventory with ease. Monitor stock levels, track sales, and generate reports all in one place.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Mobile Services</h5>
+                            <p class="card-text">Access and manage your book inventory on the go with our mobile services. Perfect for busy professionals who need to stay connected wherever they are.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials text-center">
+        <div class="container">
+            <h2>Testimonials</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">"The Book Management API has transformed the way we handle our inventory. It's incredibly easy to use and the support team is fantastic!"</p>
+                            <h5 class="card-title">- Sarah, Librarian</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">"Thanks to the mobile services, I can keep track of my bookstore inventory even when I'm not at the shop. Highly recommended!"</p>
+                            <h5 class="card-title">- John, Bookstore Owner</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <p class="card-text">"A must-have for anyone managing a large book collection. The dashboard is user-friendly and the features are top-notch."</p>
+                            <h5 class="card-title">- Emily, Book Collector</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-4">
+        <div class="container">
+            <p>&copy; 2024 BookManagementAPI. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

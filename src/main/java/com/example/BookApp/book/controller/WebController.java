@@ -1,18 +1,20 @@
 package com.example.BookApp.book.controller;
+
 import java.util.List;
 import java.util.Optional;
+import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
+import org.springframework.ui.Model;
 import com.example.BookApp.book.model.Book;
+import org.springframework.stereotype.Controller;
+import com.example.BookApp.book.service.BookService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.ui.Model;
-import com.example.BookApp.book.service.BookService;
 
 @Controller
 @RequestMapping("/books")
@@ -26,11 +28,31 @@ public class WebController {
         this.bookService = bookService;
     }
 
+    @GetMapping("/dashboard")
+    public String showDashboard(Model model) {
+
+        Long bookCount = bookService.getBookCount();
+        model.addAttribute("bookCount", bookCount);
+        // You can add more attributes to the model if needed for the dashboard
+        Long horrorBookCount = bookService.getCountOfHorrorBooks();
+        Long comedyBookCount = bookService.getCountOfComedyBooks();
+        Long fantasyBookCount = bookService.getCountOfFantasyBooks();
+        Long fictionBookCount = bookService.getCountOfFictionBooks();
+        model.addAttribute("horrorBookCount", horrorBookCount);
+        model.addAttribute("comedyBookCount", comedyBookCount);
+        model.addAttribute("fantasyBookCount", fantasyBookCount);
+        model.addAttribute("fictionBookCount", fictionBookCount);
+
+        return "dashboard"; 
+    }
+
     @GetMapping
     public String getAllBooks(Model model){
         List<Book> books = bookService.getAllBooks();
         model.addAttribute("books", books);
-        return "shelf";
+
+
+        return "books";
     }
 
     @GetMapping("/{id}")
