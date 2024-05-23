@@ -16,6 +16,23 @@ public class BookService {
         return bookRepository.findAll();
     }
 
+    public Long getBookCount() {
+        return bookRepository.count();
+    }
+
+    public Long getCountOfHorrorBooks() {
+        return bookRepository.countBooksByHorrorGenre();
+    }
+    public Long getCountOfComedyBooks() {
+        return bookRepository.countBooksByComedyGenre();
+    }
+
+    public Long getCountOfFantasyBooks() {
+        return bookRepository.countBooksByFantasyGenre();
+    }
+    public Long getCountOfFictionBooks() {
+        return bookRepository.countBooksByFictionGenre();
+    }
     public Book saveBook(Book book) {
         return bookRepository.save(book);
     }
@@ -28,4 +45,5 @@ public class BookService {
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
     }
+
 }

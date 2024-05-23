@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <!-- https://getbootstrap.com/docs/4.0/examples/ -->
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="https://getbootstrap.com/favicon.ico">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/examples/dashboard/dashboard.css">
+
+  <style>
+    #chart-container {
+  width: 600px;
+  height: 400px;
+  transition: all 1s ease-in-out;  /* Adjust transition duration and timing function */
+}
+  </style>
+
+  <title>Dashboard Template for Bootstrap 4</title>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="/login">Sign out</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="/books/dashboard">
+                <span data-feather="home"></span>
+                Dashboard <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/books">
+                <span data-feather="file"></span>
+                books
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="shopping-cart"></span>
+                Shelves
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="users"></span>
+                Users
+              </a>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+
+
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+          <h1 class="h2">Dashboard</h1>
+
+        </div>
+
+        <div class="container mt-5">
+          <div class="card">
+            <div class="card-header">
+              Welcome, Michael!
+            </div>
+
+          </div>
+        </div>
+        <div class="container mt-5">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Books</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Number of books</h6>
+                  <p class="card-text"><span th:text="${bookCount}"></span></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Genres</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">Number of Genres</h6>
+                  <p class="card-text">10</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                  <h5 class="card-title">Users</h5>
+                  <h6 class="card-subtitle mb-2 text-muted">number of Users</h6>
+                  <p class="card-text">20</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="chart-container"></div>
+
+      </main>
+    </div>
+  </div>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <!-- Icons -->
+  <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+
+  <script>
+    feather.replace()
+  </script>
+
+  <!-- Graphs -->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts/dist/apexcharts.min.js"></script>
+  <script>
+    var horrorCount = parseInt([[${horrorBookCount}]]);
+    var comedyCount = parseInt([[${comedyBookCount}]]);
+    var fantasyCount = parseInt([[${fantasyBookCount}]]);
+    var fictionCount = parseInt([[${fictionBookCount}]]);
+
+    var options = {
+      chart: {
+        type: 'bar',
+      },
+      series: [{
+        data: [{
+          x: 'Horror',
+          y: horrorCount,
+          fillColor: '#EB8C87',
+        }, {
+          x: 'Comedy',
+          y: comedyCount,
+          fillColor: '#ffff00',
+        }, {
+          x: 'Fiction',
+          y: fictionCount,
+          fillColor: '#0000ff',
+        },
+          {
+          x: 'Fantasy',
+          y: fantasyCount,
+          fillColor: '#00ff00',
+        }]
+      }]
+    }
+    var chart = new ApexCharts(document.querySelector("#chart-container"), options);
+    chart.render();
+
+    function resizeChart() {
+      chart.resize();
+    }
+
+    // Add event listener for window resize
+    window.addEventListener('resize', resizeChart)
+  </script>
+
+</body>
+
+</html>

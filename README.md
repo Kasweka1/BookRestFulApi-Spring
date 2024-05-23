@@ -33,9 +33,9 @@ cd BookApp
 
 3. Open `src/main/resources/application.properties` and configure your MariaDB username and password:
 
--spring.datasource.url=jdbc:mariaDB://localhost:3306/book_db?useSSL=false
--spring.datasource.username=your-username
--spring.datasource.password=your-password
+- spring.datasource.url=jdbc:mariaDB://localhost:3306/book_db?useSSL=false
+- spring.datasource.username=your-username
+- spring.datasource.password=your-password
 
 4. Run the application:
 
