@@ -1,38 +1,79 @@
 package com.example.BookApp.book.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
-import jakarta.persistence.*;
-import java.io.Serializable;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "course_times")
-@IdClass(CourseTimeId.class)
 public class CourseTime {
 
     @Id
-    private Integer startTime;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    @Id
-    private String venueName;
+    @Column(name = "start_time")
+    private String startTime;
 
-    @Id
-    private String day;
+    @Column(name = "end_time")
+    private String endTime;
 
-    @ManyToOne
-    @JoinColumn(name = "course_id", referencedColumnName = "courseId")
-    private Course course;
+    @Column(name = "course_name")
+    private String courseName;
 
-    @ManyToOne
-    @JoinColumn(name = "start_time", referencedColumnName = "startTime", insertable = false, updatable = false)
-    private StartTime start;
+    // Constructors
+    public CourseTime() {
+    }
 
-    @ManyToOne
-    @JoinColumn(name = "venue_name", referencedColumnName = "venueName", insertable = false, updatable = false)
-    private Venue venue;
+    public CourseTime(String startTime, String endTime, String courseName) {
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.courseName = courseName;
+    }
+
+    // Getters and Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    @Override
+    public String toString() {
+        return "CourseTime{" +
+                "id=" + id +
+                ", startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", courseName='" + courseName + '\'' +
+                '}';
+    }
 }
