@@ -3,6 +3,9 @@ package com.example.BookApp.book.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Column;
+import jakarta.persistence.Id;
+// import jakarta.persistence.GeneratedValue;
+// import jakarta.persistence.GenerationType;
 
 @Entity
 @Table(name = "course_times")
@@ -11,12 +14,15 @@ public class CourseTime {
     @Column(name = "course_id")
     private String courseID;
 
+    @Id
     @Column(name = "start_time")
     private String startTime;
 
+    @Id
     @Column(name = "venue_name")
     private String venueName;
 
+    @Id
     @Column(name = "day")
     private String day;
 
