@@ -11,36 +11,36 @@ import jakarta.persistence.GenerationType;
 @Table(name = "course_times")
 public class CourseTime {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "course_id")
+    private String courseID;
 
     @Column(name = "start_time")
     private String startTime;
 
-    @Column(name = "end_time")
-    private String endTime;
+    @Column(name = "venue_name")
+    private String venueName;
 
-    @Column(name = "course_name")
-    private String courseName;
+    @Column(name = "day")
+    private String day;
 
     // Constructors
     public CourseTime() {
     }
 
-    public CourseTime(String startTime, String endTime, String courseName) {
+    public CourseTime(String courseID, String startTime, String venueName, String day) {
+        this.courseID = courseID;
         this.startTime = startTime;
-        this.endTime = endTime;
-        this.courseName = courseName;
+        this.venueName = venueName;
+        this.day = day;
     }
 
     // Getters and Setters
-    public Long getId() {
-        return id;
+    public String getCourseID() {
+        return courseID;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(String courseID) {
+        this.courseID = courseID;
     }
 
     public String getStartTime() {
@@ -51,29 +51,30 @@ public class CourseTime {
         this.startTime = startTime;
     }
 
-    public String getEndTime() {
-        return endTime;
+    public String getVenueName() {
+        return venueName;
     }
 
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
+    public void setVenueName(String venueName) {
+        this.venueName = venueName;
     }
 
-    public String getCourseName() {
-        return courseName;
+    public String getDay() {
+        return day;
     }
 
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
+    public void setDay(String day) {
+        this.day = day;
     }
+
 
     @Override
     public String toString() {
         return "CourseTime{" +
-                "id=" + id +
+                "courseID=" + courseID +
                 ", startTime='" + startTime + '\'' +
-                ", endTime='" + endTime + '\'' +
-                ", courseName='" + courseName + '\'' +
+                ", day='" + day + '\'' +
+                ", venueName='" + venueName + '\'' +
                 '}';
     }
 }
