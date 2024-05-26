@@ -3,7 +3,7 @@ package com.example.BookApp.user.config;
 import com.example.BookApp.user.service.PasswordEncoder;
 
 public class BCryptPasswordEncoder implements PasswordEncoder {
-
+    
     @Override
     public String encode(Object password) {
         // TODO Auto-generated method stub

@@ -1,6 +1,7 @@
 package com.example.BookApp.book.service;
 
 import java.util.*;
+import com.example.BookApp.user.model.User;
 import com.example.BookApp.book.model.Book;
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,9 @@ public class BookService {
 
     public void deleteBook(Long id) {
         bookRepository.deleteById(id);
+    }
+    public List<Book> getBooksByUser(User user) {
+        return bookRepository.findByUser(user);
     }
 
 }

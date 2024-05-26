@@ -2,7 +2,8 @@ package com.example.BookApp.book.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
@@ -11,14 +12,9 @@ public class HomeController {
         return "index"; 
     }
 
-     @GetMapping("/login")
-    public String showLoginForm() {
-        return "login";
-    }
-
-    @PostMapping("/login")
-    public String login() {
-        // Implement your authentication logic here
-        return "redirect:/books";
+   @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/login";
     }
 }
