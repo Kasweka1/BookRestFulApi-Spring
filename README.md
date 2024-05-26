@@ -25,7 +25,7 @@ This is a simple Book Management System built using Spring Boot.
 
 1. Clone the repository:
 
-git clone https://github.com/Kasweka1/BookAppInterviewQuestionSpringBoot.git
+git clone https://github.com/Kasweka1/BookRestFulApi-Spring.git
 
 2. Navigate to the project directory:
 
