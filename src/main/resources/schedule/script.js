@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function fetchSchedule(className) {
-        fetch(`/schedule/${className}`)
+        fetch(`http://localhost:8080/schedule/${className}`)
             .then(response => response.text())
             .then(data => {
                 updateSchedule(data);
