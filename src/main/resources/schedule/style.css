@@ -1,0 +1,126 @@
+/* Desktop-First Approach */
+
+* {
+  color: gray;
+}
+
+a {
+  color: gray;
+}
+
+body {
+  font-family: sans-serif;
+}
+
+.course-selection-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  width: 100%;
+}
+
+.course-selection-div>span:first-child {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.course-selection-div>span:last-child {
+  flex-shrink: 0;
+  margin-left: auto;
+  padding-right: 100px;
+}
+
+.course-selection-div>span:last-child>select {
+  padding: 10px;
+  border: 2px solid gray;
+  border-radius: 10px;
+}
+
+footer {
+  background-color: black;
+  min-height: 50px;
+  width: 100%;
+  margin-top: 50px;
+  padding: 25px;
+}
+
+
+.m-10 {
+  margin: 10px;
+}
+
+.icon {
+  width: 20px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.schedules-holder {
+  margin-top: 50px;
+}
+
+.simplified-schedule {
+  display: inline-flex;
+  width: 100%;
+  height: fit-content;
+  margin-bottom: 50px;
+}
+
+:root {
+  --sch-cell-w: 30%;
+  --sch-cell-h: 30%;
+}
+
+.simplified-schedule .item {
+  margin: 20px auto;
+}
+
+.simplified-schedule .item .item-p-div {
+  width: fit-content;
+  height: fit-content;
+  padding: 10px 50px 10px 10px;
+  border: 2px solid gray;
+  border-radius: 15px;
+}
+
+.main-heading {
+  margin: 20px 0 120px 0;
+  position: sticky;
+  top: 0;
+  color: gray;
+}
+
+.tabular-scedule {
+  margin-top: 75px;
+  display: block;
+}
+
+table {
+  margin: 0 auto;
+  width: 90%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 2px solid gray;
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.schedule-cell {
+  height: 60px;
+  /* Adjust to fit the content comfortably */
+}
+
+.schedule-cell div {
+  margin: 5px;
+}
