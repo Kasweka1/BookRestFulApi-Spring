@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import { useEffect, useState, ChangeEvent } from 'react';
 import { Stream, CourseTime, Days, StartTimes } from "./api/models";
 import { fetchCourseTime } from "./api/fetch.mjs";
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -74,42 +75,53 @@ export default function Home() {
         type: 'Class'
       };
     }
+
+    const d = 18;
+
     return (
-      <td key={props.index} id={`${props.day}-${props.startTime}`} className="border">
-        <p>{courseTimeObject.courseCode}</p>
-        <p>{courseTimeObject.venue}</p>
+      <td key={props.index} id={`${props.day}-${props.startTime}`} className="border p-2">
+        <div className="flex">
+          <span><Image src="/icons/clock.png" alt="clock-icon" width={d} height={d} /></span>
+          <span className="ml-2">{courseTimeObject.courseCode}</span>
+        </div>
+        <div className="flex mt-2">
+          <span><Image src="/icons/location-pin.png" alt="location-pin-icon" width={d} height={d} /></span>
+          <span className="ml-2">{courseTimeObject.venue}</span>
+        </div>
       </td>
     );
   };
 
   return (
-    <main className={` ${inter.className}`}>
-      <h1 className="w-full text-center p-4 text-slate-900 text-2xl sticky top-0">School Schedule</h1>
-      <div className="stick top-18 w-full flex">
-        <span><h3>{selectedStreamValue}</h3></span>
-        <span className="right-2.5">
-          <select
-            value={selectedStreamValue}
-            onChange={handleStreamChange}
-            className="m-2 p-2 border rounded-md"
-            id="stream-selector"
-          >
-            <option value="" disabled>Select your major</option>
-            {
-              streamData.map((stream, index) => (
-                <option key={index} value={stream.name}>{stream.name}</option>
-              ))
-            }
-          </select>
-        </span>
+    <>    <main className={` ${inter.className} block`}>
+      <h1 className="w-full h-12 text-center p-2 bg-slate-100 text-slate-900 text-2xl sticky top-0 z-10">School Schedule</h1>
+      <div className="sticky top-12 h-16 w-full bg-white block bg-white z-10">
+        <section className="w-fit mx-auto flex">
+          <span><h3 className="text-xl px-4 mt-4">{selectedStreamValue}</h3></span>
+          <span className="right-2.5">
+            <select
+              value={selectedStreamValue}
+              onChange={handleStreamChange}
+              className="m-2 p-2 border rounded-md"
+              id="stream-selector"
+            >
+              <option value="" disabled>Select your major</option>
+              {
+                streamData.map((stream, index) => (
+                  <option key={index} value={stream.name}>{stream.name}</option>
+                ))
+              }
+            </select>
+          </span>
+        </section>
       </div>
-      <div>
+      <div className="sticky w-fit mx-auto ">
         <table>
-          <thead>
+          <thead className="sticky top-28">
             <tr>
-              <th className="bg-slate-200"></th>
+              <th className="bg-slate-200 text-center"></th>
               {Days.map((day, index) => (
-                <th key={index} id={day} className="bg-slate-200">{day}</th>
+                <th key={index} id={day} className="bg-slate-200 px-2 py-1">{day}</th>
               ))}
             </tr>
           </thead>
@@ -118,7 +130,7 @@ export default function Home() {
               // Create as many rows as there are start times, for each row create as many cells as there are days
               StartTimes.map((startTime, outerIndex) => (
                 <tr key={outerIndex}>
-                  <td>{startTime}</td>
+                  <td className="p-2">{startTime}</td>
                   {
                     Days.map((day, innerIndex) => (
                       <ScheduleCell
@@ -135,5 +147,18 @@ export default function Home() {
         </table>
       </div>
     </main>
+      <footer>
+        <div>
+          <h3>Credits</h3>
+          <p><span>Clock icon: </span>By <a href="https://www.flaticon.com/authors/those-icons" title="Those Icons"> Those
+            Icons </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
+          <p><span>Book icon: </span>By <a href="https://www.flaticon.com/authors/freepik" title="Freepik">
+            Freepik </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
+          <p><span>Location pin icon: </span>By <a href="https://www.flaticon.com/authors/those-icons"
+            title="Those Icons"> Those Icons </a> from <a href="https://www.flaticon.com/"
+              title="Flaticon">www.flaticon.com</a></p>
+        </div>
+      </footer>
+    </>
   );
 }
