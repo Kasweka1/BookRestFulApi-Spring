@@ -147,15 +147,15 @@ export default function Home() {
         </table>
       </div>
     </main>
-      <footer>
+      <footer className="bg-black w-full p-4 text-slate-100 mt-4">
         <div>
           <h3>Credits</h3>
-          <p><span>Clock icon: </span>By <a href="https://www.flaticon.com/authors/those-icons" title="Those Icons"> Those
-            Icons </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
-          <p><span>Book icon: </span>By <a href="https://www.flaticon.com/authors/freepik" title="Freepik">
-            Freepik </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
-          <p><span>Location pin icon: </span>By <a href="https://www.flaticon.com/authors/those-icons"
-            title="Those Icons"> Those Icons </a> from <a href="https://www.flaticon.com/"
+          <p><span>Clock icon: </span>By <a className="underline" href="https://www.flaticon.com/authors/those-icons" title="Those Icons"> Those
+            Icons </a> from <a className="underline" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
+          <p><span>Book icon: </span>By <a className="underline" href="https://www.flaticon.com/authors/freepik" title="Freepik">
+            Freepik </a> from <a className="underline" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></p>
+          <p><span>Location pin icon: </span>By <a className="underline" href="https://www.flaticon.com/authors/those-icons"
+            title="Those Icons"> Those Icons </a> from <a className="underline" href="https://www.flaticon.com/"
               title="Flaticon">www.flaticon.com</a></p>
         </div>
       </footer>
