@@ -9,8 +9,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -29,12 +32,20 @@ public class CourseTime {
     @JoinColumn(name = "course_unit_id")
     private CourseUnit courseUnit;
 
-    @ManyToOne
-    @JoinColumn(name = "stream_id")
-    private Stream stream;
+    // @ManyToOne
+    // @JoinColumn(name = "stream_id")
+    // private Stream stream;
 
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
+
+    @ManyToMany
+    @JoinTable(
+        name = "course_time_stream",
+        joinColumns = @JoinColumn(name = "course_time_id"),
+        inverseJoinColumns = @JoinColumn(name = "stream_id")
+    )
+    private List<Stream> streams;
     
 }

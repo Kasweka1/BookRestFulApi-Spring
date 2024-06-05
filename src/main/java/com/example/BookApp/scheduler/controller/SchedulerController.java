@@ -1,6 +1,7 @@
 package com.example.BookApp.scheduler.controller;
 
 
+import com.example.BookApp.scheduler.dto.CourseTimeResponseDTO;
 import com.example.BookApp.scheduler.model.Course;
 import com.example.BookApp.scheduler.model.CourseTime;
 import com.example.BookApp.scheduler.model.CourseUnit;
@@ -13,9 +14,11 @@ import com.example.BookApp.scheduler.service.StreamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import java.util.stream.Collectors;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/scheduler")
@@ -131,10 +134,34 @@ public class SchedulerController {
         return courseTimeService.saveCourseTime(courseTime);
     }
 
+    // @GetMapping("/coursetimes")
+    // @ResponseStatus(HttpStatus.OK)
+    // public List<CourseTime> getAllCourseTimes() {
+    //     return courseTimeService.getAllCourseTimes();
+    // }
+
+
     @GetMapping("/coursetimes")
-    @ResponseStatus(HttpStatus.OK)
-    public List<CourseTime> getAllCourseTimes() {
-        return courseTimeService.getAllCourseTimes();
+    public List<CourseTimeResponseDTO> getAllCourseTimes() {
+        List<CourseTime> courseTimes = courseTimeService.getAllCourseTimes();
+        return courseTimes.stream().map(this::convertToDTO).collect(Collectors.toList());
+    }
+
+    private CourseTimeResponseDTO convertToDTO(CourseTime courseTime) {
+        CourseTimeResponseDTO dto = new CourseTimeResponseDTO();
+        dto.setTime(courseTime.getTime().toString().substring(0, 5)); // Convert to "HH:mm" format
+        dto.setDay(courseTime.getDay());
+        dto.setVenue(courseTime.getVenue());
+        dto.setCourseCode(courseTime.getCourse().getCode());
+        dto.setType(courseTime.getCourseUnit().getType());
+
+        // Collect stream names using the utility method
+        List<String> streamNames = courseTime.getStreams().stream()
+                .map(com.example.BookApp.scheduler.model.Stream::getName)
+                .collect(Collectors.toList());
+
+        dto.setStreams(streamNames);
+        return dto;
     }
 
     @GetMapping("/coursetimes/{id}")
