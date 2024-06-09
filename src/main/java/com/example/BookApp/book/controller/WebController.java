@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.example.BookApp.user.model.User;
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/books")
@@ -31,7 +29,7 @@ public class WebController {
     }
 
     @GetMapping("/dashboard")
-    public String showDashboard(HttpSession session, Model model) {
+    public String showDashboard(Model model) {
 
         Long bookCount = bookService.getBookCount();
         model.addAttribute("bookCount", bookCount);
@@ -45,22 +43,13 @@ public class WebController {
         model.addAttribute("fantasyBookCount", fantasyBookCount);
         model.addAttribute("fictionBookCount", fictionBookCount);
 
-        User loggedInUser = (User) session.getAttribute("loggedInUser");
-        if (loggedInUser != null) {
-            model.addAttribute("username", loggedInUser.getUsername());
-        }
-
         return "dashboard"; 
     }
 
     @GetMapping
-    public String getAllBooks(Model model, HttpSession session){
-        User loggedInUser = (User) session.getAttribute("loggedInUser");
-
-       if (loggedInUser != null) {
-            List<Book> books = bookService.getBooksByUser(loggedInUser);
-            model.addAttribute("books", books);
-        }
+    public String getAllBooks(Model model){
+        List<Book> books = bookService.getAllBooks();
+        model.addAttribute("books", books);
 
 
         return "books";
@@ -84,13 +73,8 @@ public class WebController {
     }
 
     @PostMapping("/add")
-    public String addBook(@ModelAttribute("book") Book book, HttpSession session) {
-        User loggedInUser = (User) session.getAttribute("loggedInUser");
-
-        if (loggedInUser != null) {
-            book.setUser(loggedInUser);
-            bookService.saveBook(book);
-        }
+    public String addBook(@ModelAttribute("book") Book book) {
+        bookService.saveBook(book);
         return "redirect:/books";
     }
 
@@ -106,15 +90,10 @@ public class WebController {
     }
 
     @PostMapping("/edit/{id}")
-    public String updateBook(@PathVariable("id") Long id, @ModelAttribute("book") Book book,  HttpSession session) {
-        User loggedInUser = (User) session.getAttribute("loggedInUser");
-        if (loggedInUser != null) {
-            book.setId(id);
-            book.setUser(loggedInUser);  // Set the user for the book
-            bookService.saveBook(book);
-            return "redirect:/books";
-        }
-        return "redirect:/login";
+    public String updateBook(@PathVariable("id") Long id, @ModelAttribute("book") Book book) {
+        book.setId(id);
+        bookService.saveBook(book);
+        return "redirect:/books";
     }
 
     @PostMapping("/delete/{id}")
