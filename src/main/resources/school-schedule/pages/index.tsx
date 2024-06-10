@@ -2,10 +2,12 @@ import { Inter } from "next/font/google";
 import { useEffect, useState, ChangeEvent } from 'react';
 import { Stream, CourseTime, Days, StartTimes } from "./api/models";
 import Image from "next/image";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
 const serverPort = 'http://localhost:8080';
+// /api/scheduler/coursetimes
 
 export default function Home() {
   const [streamData, setStreamData] = useState<Stream[]>([]);
@@ -14,7 +16,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchStreamData = async () => {
-      const res = await fetch(`${serverPort}/streams`); // or any other endpoint
+      const res = await fetch(`${serverPort}/api/scheduler/streams`); // or any other endpoint
       const rawData = await res.json();
 
       // Transform the rawData object into an array of key-value pairs
@@ -33,11 +35,16 @@ export default function Home() {
   }, []);
 
   const fetchCourseTimeData = async (streamValue: string) => {
-    const res = await fetch(`${serverPort}/coursetimes/${streamValue}`); // or any other endpoint
+    const res = await fetch(`${serverPort}/api/scheduler/coursetimes`); // or any other endpoint
     const rawData = await res.json();
 
+    // filter the raw data by streamValue
+    const filteredData = rawData.filter(rawData => rawData["streams"].contains(streamValue));
+
+    console.log("Filtered data: ", filteredData);
+
     // Transform the rawData object into an array of key-value pairs
-    const entries = Object.entries(rawData);
+    const entries = Object.entries(filteredData);
 
     // Map over the entries to create an array of CourseTime objects
     const mappedData: CourseTime[] = entries.map(([key, value]) => ({
@@ -73,7 +80,7 @@ export default function Home() {
         venue: '',
         courseCode: '',
         stream: '',
-        type: 'Class'
+        type: ''
       };
     }
 
@@ -89,14 +96,20 @@ export default function Home() {
           <span><Image src="/icons/location-pin.png" alt="location-pin-icon" width={d} height={d} /></span>
           <span className="ml-2">{courseTimeObject.venue}</span>
         </div>
+        <div className="flex mt-2">
+          <span><Image src="/icons/" alt="category/type icon" width={d} height={d} /></span>
+          <span className="ml-2">{courseTimeObject.type}</span>
+        </div>
       </td>
     );
   };
 
   return (
     <>    <main className={` ${inter.className} block`}>
-      
-      <h1 className="w-full h-12 text-center p-2 bg-slate-100 text-slate-900 text-2xl sticky top-0 z-10">School Schedule</h1>
+      <section className="w-full h-12  p-2 bg-slate-100 text-slate-900  sticky top-0 z-10 flex">
+        <Link href={serverPort} className="w-1/12 text-center">Home</Link>
+        <h1 className="w-10/12 text-center text-2xl">School Schedule</h1>
+      </section>
       <div className="sticky top-12 h-16 w-full bg-white block bg-white z-10">
         <section className="w-fit mx-auto flex">
           <span><h3 className="text-xl px-4 mt-4">{selectedStreamValue}</h3></span>
