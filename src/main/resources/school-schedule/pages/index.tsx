@@ -1,3 +1,5 @@
+'use client';
+
 import { Inter } from "next/font/google";
 import { useEffect, useState, ChangeEvent } from 'react';
 import { Stream, CourseTime, Days, StartTimes } from "./api/models";
@@ -16,11 +18,18 @@ export default function Home() {
 
   useEffect(() => {
     const fetchStreamData = async () => {
-      const res = await fetch(`${serverPort}/api/scheduler/streams`); // or any other endpoint
-      const rawData = await res.json();
+      const dataArray = await fetch('http://localhost:8080/api/scheduler/streams')
+        .then(response => response.json())
+        .then(data => {
+          console.log("data form java server: ", data)
+          console.log(typeof data)
+          return data
+        }); // or any other endpoint
 
-      // Transform the rawData object into an array of key-value pairs
-      const entries = Object.entries(rawData);
+      console.log(dataArray)
+
+      // Transform the dataArray object into an array of key-value pairs
+      const entries = Object.entries(dataArray);
 
       // Map over the entries to create an array of Stream objects
       const mappedData: Stream[] = entries.map(([key, value]) => ({
@@ -97,7 +106,7 @@ export default function Home() {
           <span className="ml-2">{courseTimeObject.venue}</span>
         </div>
         <div className="flex mt-2">
-          <span><Image src="/icons/" alt="category/type icon" width={d} height={d} /></span>
+          <span><Image src="/icons/category.png" alt="category/type icon" width={d} height={d} /></span>
           <span className="ml-2">{courseTimeObject.type}</span>
         </div>
       </td>
@@ -172,6 +181,8 @@ export default function Home() {
           <p><span>Location pin icon: </span>By <a className="underline" href="https://www.flaticon.com/authors/those-icons"
             title="Those Icons"> Those Icons </a> from <a className="underline" href="https://www.flaticon.com/"
               title="Flaticon">www.flaticon.com</a></p>
+          <p><span>Category icon: </span>By <a className="underline" href="https://www.flaticon.com/authors/bayu015"
+            title="Those Icons"> bayu015 </a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com'</a></p>
         </div>
       </footer>
     </>
