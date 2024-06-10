@@ -10,6 +10,7 @@ import com.example.BookApp.scheduler.service.CourseService;
 import com.example.BookApp.scheduler.service.CourseTimeService;
 import com.example.BookApp.scheduler.service.CourseUnitService;
 import com.example.BookApp.scheduler.service.StreamService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -140,7 +141,7 @@ public class SchedulerController {
     //     return courseTimeService.getAllCourseTimes();
     // }
 
-
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/coursetimes")
     public List<CourseTimeResponseDTO> getAllCourseTimes() {
         List<CourseTime> courseTimes = courseTimeService.getAllCourseTimes();
