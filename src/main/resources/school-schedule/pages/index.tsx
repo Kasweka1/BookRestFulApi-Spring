@@ -1,10 +1,11 @@
 import { Inter } from "next/font/google";
 import { useEffect, useState, ChangeEvent } from 'react';
 import { Stream, CourseTime, Days, StartTimes } from "./api/models";
-import { fetchCourseTime } from "./api/fetch.mjs";
 import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const serverPort = 'http://localhost:8080';
 
 export default function Home() {
   const [streamData, setStreamData] = useState<Stream[]>([]);
@@ -13,7 +14,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchStreamData = async () => {
-      const res = await fetch('http://localhost:4000/api/streams'); // or any other endpoint
+      const res = await fetch(`${serverPort}/streams`); // or any other endpoint
       const rawData = await res.json();
 
       // Transform the rawData object into an array of key-value pairs
@@ -32,7 +33,7 @@ export default function Home() {
   }, []);
 
   const fetchCourseTimeData = async (streamValue: string) => {
-    const res = await fetch(`http://localhost:4000/api/course-units/${streamValue}`); // or any other endpoint
+    const res = await fetch(`${serverPort}/coursetimes/${streamValue}`); // or any other endpoint
     const rawData = await res.json();
 
     // Transform the rawData object into an array of key-value pairs
@@ -94,6 +95,7 @@ export default function Home() {
 
   return (
     <>    <main className={` ${inter.className} block`}>
+      
       <h1 className="w-full h-12 text-center p-2 bg-slate-100 text-slate-900 text-2xl sticky top-0 z-10">School Schedule</h1>
       <div className="sticky top-12 h-16 w-full bg-white block bg-white z-10">
         <section className="w-fit mx-auto flex">
