@@ -37,12 +37,24 @@ cd BookApp
 - spring.datasource.username=your-username
 - spring.datasource.password=your-password
 
-4. Run the application:
+4. Checkout to the Scheduler branch:
+    `git checkout scheduler`
+
+5. From the project root directory, run:
+    ` ./install_node_dependencies`
+
+6. Run the application:
 
 ./gradlew bootRun
 
+7. Run the cors server:
+    ` ./start_cors_server`
 
-5. Open your browser and go to [http://localhost:8080](http://localhost:8080) to view the application.
+8. Start the scedule:
+    ` ./start_scedule`
+
+
+9. Open your browser and go to [http://localhost:8080](http://localhost:8080) to view the application.
 
 ## Usage
 
