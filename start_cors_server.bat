@@ -1,2 +1,1 @@
-cd src\main\resources\cors-intermediary
-npm run dev
+cd src\main\resources\cors-intermediary && node index-cors.js

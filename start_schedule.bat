@@ -1,2 +1,1 @@
-cd src\main\resources\school-schedule
-npm run dev
+cd src\main\resources\school-schedule && npm run dev
