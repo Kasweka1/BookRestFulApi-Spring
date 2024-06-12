@@ -1,0 +1,197 @@
+Enter password: **********
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 13
+Server version: 11.3.2-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| bookappdb          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.037 sec)
+
+MariaDB [(none)]> use bookappdb;
+Database changed
+MariaDB [bookappdb]> show tables;
++---------------------+
+| Tables_in_bookappdb |
++---------------------+
+| book                |
+| course              |
+| course_time         |
+| course_time_stream  |
+| course_times        |
+| course_unit         |
+| courses             |
+| start_times         |
+| stream              |
+| venues              |
++---------------------+
+10 rows in set (0.004 sec)
+
+MariaDB [bookappdb]> select * from stream;
+Empty set (0.005 sec)
+
+MariaDB [bookappdb]> drop book
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'book' at line 1
+MariaDB [bookappdb]> drop database bookappdb;
+Query OK, 10 rows affected (0.193 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+4 rows in set (0.002 sec)
+
+MariaDB [(none)]> create database bookappdb;
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| bookappdb          |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.002 sec)
+
+MariaDB [(none)]> use bookappdb;
+Database changed
+MariaDB [bookappdb]> show tables;
++---------------------+
+| Tables_in_bookappdb |
++---------------------+
+| book                |
+| course              |
+| course_time         |
+| course_time_stream  |
+| course_unit         |
+| stream              |
++---------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [bookappdb]> describe course;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | bigint(20)   | NO   | PRI | NULL    | auto_increment |
+| code  | varchar(255) | YES  |     | NULL    |                |
+| name  | varchar(255) | YES  |     | NULL    |                |
+| year  | int(11)      | NO   |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+4 rows in set (0.068 sec)
+
+MariaDB [bookappdb]> insert into course(code, name, year) values ("3120", "Digital Electronics", 3);
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [bookappdb]> delete from course where code = 3120;
+Query OK, 1 row affected (0.008 sec)
+
+MariaDB [bookappdb]> insert into course(code, name, year) values ("CSC3120", "Digital Electronics", 3);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [bookappdb]> select * from course;
++----+---------+---------------------+------+
+| id | code    | name                | year |
++----+---------+---------------------+------+
+|  2 | CSC3120 | Digital Electronics |    3 |
++----+---------+---------------------+------+
+1 row in set (0.000 sec)
+
+MariaDB [bookappdb]> insert into course(code, name, year) values ("CSC3600", "Software Engineering", 3);
+Query OK, 1 row affected (0.007 sec)
+
+MariaDB [bookappdb]> insert into course(code, name, year) values ("CSC3301", "Programming Languages and Paradigms", 3);
+Query OK, 1 row affected (0.004 sec)
+
+MariaDB [bookappdb]> insert into course(code, name, year) values ("CSC3801", "Data Communication and Networking", 3);
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [bookappdb]> insert into course(code, name, year) values ("CSC3011", "Algorithms and Complexity", 3);
+Query OK, 1 row affected (0.005 sec)
+
+MariaDB [bookappdb]> insert into course(code, name, year) values ("CSC3750", "Management and Information Systems", 3);
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [bookappdb]> insert into course(code, name, year) values ("CSC3311", "Structure and Interpretation of Computer Program", 3);
+Query OK, 1 row affected (0.003 sec)
+
+MariaDB [bookappdb]> select * from course;
++----+---------+--------------------------------------------------+------+
+| id | code    | name                                             | year |
++----+---------+--------------------------------------------------+------+
+|  2 | CSC3120 | Digital Electronics                              |    3 |
+|  3 | CSC3600 | Software Engineering                             |    3 |
+|  4 | CSC3301 | Programming Languages and Paradigms              |    3 |
+|  5 | CSC3801 | Data Communication and Networking                |    3 |
+|  6 | CSC3011 | Algorithms and Complexity                        |    3 |
+|  7 | CSC3750 | Management and Information Systems               |    3 |
+|  8 | CSC3311 | Structure and Interpretation of Computer Program |    3 |
++----+---------+--------------------------------------------------+------+
+7 rows in set (0.005 sec)
+
+MariaDB [bookappdb]> describe streams;
+ERROR 1146 (42S02): Table 'bookappdb.streams' doesn't exist
+MariaDB [bookappdb]> show tables;
++---------------------+
+| Tables_in_bookappdb |
++---------------------+
+| book                |
+| course              |
+| course_time         |
+| course_time_stream  |
+| course_unit         |
+| stream              |
++---------------------+
+6 rows in set (0.001 sec)
+
+MariaDB [bookappdb]> describe stream;
++-------+--------------+------+-----+---------+----------------+
+| Field | Type         | Null | Key | Default | Extra          |
++-------+--------------+------+-----+---------+----------------+
+| id    | bigint(20)   | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(255) | YES  |     | NULL    |                |
++-------+--------------+------+-----+---------+----------------+
+2 rows in set (0.031 sec)
+
+MariaDB [bookappdb]> insert into stream (name) values ("Computer Networking ");
+Query OK, 1 row affected (0.007 sec)
+
+MariaDB [bookappdb]> insert into stream (name) values ("Computer Systems");
+Query OK, 1 row affected (0.006 sec)
+
+MariaDB [bookappdb]> insert into stream (name) values ("Software Engineering");
+Query OK, 1 row affected (0.005 sec)
+
+MariaDB [bookappdb]> select * from stream:
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near ':' at line 1
+MariaDB [bookappdb]> select * from stream;
++----+----------------------+
+| id | name                 |
++----+----------------------+
+|  1 | Computer Networking  |
+|  2 | Computer Systems     |
+|  3 | Software Engineering |
++----+----------------------+
+3 rows in set (0.000 sec)
+
+MariaDB [bookappdb]>

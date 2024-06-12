@@ -3,6 +3,7 @@ package com.example.BookApp.book.controller;
 import java.util.List;
 import java.util.Optional;
 
+
 import com.example.BookApp.book.model.Book;
 import com.example.BookApp.book.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController // indicates rest controller
-@RequestMapping("/api/books") // base url
+@RestController
+@RequestMapping("/api/books")
 public class ApiController {
 
     private final BookService bookService;
@@ -29,7 +30,7 @@ public class ApiController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Book> getBookById(@PathVariable("id") Long id) {
-
+  
         Optional<Book> book = bookService.getBookById(id);
         // Check if book is present (not empty)
         if (book.isPresent()) {
@@ -38,6 +39,7 @@ public class ApiController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Return 404 Not Found
         }
     }
+    
 
     @PostMapping
     public ResponseEntity<Book> addBook(@RequestBody Book book) {
@@ -51,3 +53,6 @@ public class ApiController {
         return ResponseEntity.noContent().build();
     }
 }
+
+
+
