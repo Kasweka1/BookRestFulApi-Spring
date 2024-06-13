@@ -1,0 +1,1 @@
+cd src\main\resources\cors-intermediary && node index-cors.js

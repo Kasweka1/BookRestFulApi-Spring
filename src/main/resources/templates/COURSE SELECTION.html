@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            display: block;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Select a Course</h1>
+    <form>
+        <label for="courses">Choose a course:</label>
+        <select id="courses" name="courses">
+            <option value="CSC3120">CSC 3120 Digital Electronics</option>
+            <option value="CSC3600">CSC 3600 Software Engineering</option>
+            <option value="CSC3301">CSC 3301 Programming Language and Paradigms</option>
+            <option value="CSC3801">CSC 3801 Data Communication and Network</option>
+            <option value="CSC3011">CSC 3011 Algorithm and Complexity</option>
+            <option value="CSC3750">CSC 3750 Management Information Systems</option>
+            <option value="CSC3311">CSC 3311 Structure and Interpretation of Computer Programs</option>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
